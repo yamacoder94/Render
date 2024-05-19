@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": "cmake-js rebuild",
+    "start": "chmod +x node_modules/.bin/cmake && node index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +16,8 @@
     "express": "^4.19.2",
     "node-llama-cpp": "^2.8.10",
     "socket.io": "^4.7.5"
+  },
+  "devDependencies": {
+    "cmake-js": "^7.3.0"
   }
 }
