@@ -1,8 +1,9 @@
 import express from "express";
 import { createServer } from "http";
 import { Server } from "socket.io";
-//import {fileURLToPath} from "url";
-//import path from "path";
+import { fileURLToPath } from "url";
+import path from "path";
+import cors from "cors";
 import { LlamaModel, LlamaContext, LlamaChatSession } from "node-llama-cpp";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
