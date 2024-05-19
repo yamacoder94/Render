@@ -31,15 +31,6 @@ const io = new Server(server, {
   },
 });
 
-// io.on("connection", (soc) => {
-//   console.log("There is a new connection");
-//   soc.on("message", async (msg) => {
-
-//     const bot_reply = await session.prompt(msg);
-//     soc.emit("response", bot_reply);
-//   });
-// });
-
 io.on("connection", (soc) => {
   console.log("There is a new connection");
   soc.on("message", async (msg) => {
