@@ -29,7 +29,7 @@ app.use(
 );
 
 // Serve static files from the React app
-app.use(express.static(path.join(__dirname, "dist")));
+//app.use(express.static(path.join(__dirname, "dist")));
 
 //de tipo socket
 //io es igual a un nuevo objeto de tipo server(http??)
