@@ -3,6 +3,7 @@ const http = require("node:http");
 const { findAvailablePort } = require("./serverTwo");
 //ahora podmeos llamar a la funcion que creamos que nos busca un pueerto disponible
 
+//console.log(process.env); //retorna todas las variables del sistema
 const desiredPort = process.env.PORT ?? 3000; // nos permite colocar un puerto predeterminado
 //desde la linea de comando para arrancar el servidor
 
