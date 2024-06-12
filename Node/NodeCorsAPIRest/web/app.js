@@ -1,10 +1,36 @@
 const express = require("express");
 const app = express();
+
+const cors = require("cors"); // por defecto deja pasar todo
 const movies = require("./movies.json");
 const crypto = require("node:crypto"); //nos permite crear IDs
 const { validateMovie, validatePartialMovie } = require("../schemas/movies");
 
 app.use(express.json()); // Middleware ,necesario para formatear ? la informacion que se envvia en el post, put, patch
+//de esta forma se especifica que se permitira con CORS
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      const ACCEPTED_ORIGINS = [
+        "http://localhost:8080", //ejemplo
+        "http://localhost:1235",
+        "https://movies.com", //ejemplo
+        "https://midu.dev", //ejemplo
+      ];
+
+      if (ACCEPTED_ORIGINS.includes(origin)) {
+        return callback(null, true);
+      }
+
+      if (!origin) {
+        return callback(null, true);
+      }
+
+      return callback(new Error("Not allowed by CORS"));
+    },
+  })
+);
+
 app.disable("x-powered-by");
 
 // app.get("/", (req, res) => {
@@ -79,6 +105,20 @@ app.post("/movies", (req, res) => {
   movies.push(newMovie);
 
   res.status(201).json(newMovie);
+});
+
+//Elimina pelicula
+app.delete("/movies/:id", (req, res) => {
+  const { id } = req.params;
+  const movieIndex = movies.findIndex((movie) => movie.id === id);
+
+  if (movieIndex === -1) {
+    return res.status(404).json({ message: "Movie not found" });
+  }
+
+  movies.splice(movieIndex, 1);
+
+  return res.json({ message: "Movie deleted" });
 });
 
 app.patch("/movies/:id", (req, res) => {
