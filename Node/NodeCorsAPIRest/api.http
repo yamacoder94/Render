@@ -1,0 +1,26 @@
+### Recuperar todas las peliculas 
+GET http://localhost:1235/movies
+
+### Recupera peliculas por ID 
+GET http://localhost:1235/movies/dcdd0fad-a94c-4810-8acc-5f108d3b18c3
+
+### Recupera peliculas por genero , se usa un queryString
+GET http://localhost:1235/movies?genre=Action
+
+
+### Crear pelicula con POST
+POST http://localhost:1235/movies
+Content-Type: application/json
+
+{
+    
+    "title": "The Godfather",
+    "year": 1975,
+    "director": "Francis For Coppola",
+    "duration": 175,
+    "genre": [
+      "Crime",
+      "Drama"
+    ],
+    "rate": 9.7
+  }
